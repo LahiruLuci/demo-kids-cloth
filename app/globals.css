@@ -1,26 +1,534 @@
 @import "tailwindcss";
 
+/* =========================================================
+   KIDS FASHION STORE — GLOBAL DESIGN SYSTEM
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ---------------------------------------------------------
+     CORE COLORS
+     --------------------------------------------------------- */
+
+  --background: #fdfcf9;
+  --foreground: #18212b;
+
+  --surface: #ffffff;
+  --surface-soft: #f8f6f1;
+  --surface-warm: #f4f0e8;
+
+  --text-primary: #18212b;
+  --text-secondary: #59636e;
+  --text-muted: #89919a;
+
+  --border: #e9e6df;
+  --border-strong: #dcd8cf;
+
+  /*
+   * Main brand accent.
+   * Soft sage gives the children's brand personality
+   * without making the website look childish.
+   */
+  --primary: #7f9b87;
+  --primary-hover: #6d8975;
+  --primary-foreground: #ffffff;
+
+  /*
+   * Secondary accents should be used sparingly.
+   * Product photography should remain the main source of colour.
+   */
+  --accent-yellow: #f3dfa2;
+  --accent-blue: #dbe9ef;
+  --accent-peach: #f2d8c9;
+  --accent-pink: #ecdadd;
+  --accent-green: #dce7dd;
+
+  --sale: #b95f55;
+
+  /* ---------------------------------------------------------
+     TYPOGRAPHY
+     --------------------------------------------------------- */
+
+  --font-body: "DM Sans", Arial, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+
+  /*
+   * Fluid typography scales smoothly between mobile
+   * and desktop without requiring many breakpoints.
+   */
+
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+
+  --heading-sm: clamp(1.5rem, 2vw, 2rem);
+  --heading-md: clamp(2rem, 3.5vw, 3.25rem);
+  --heading-lg: clamp(2.75rem, 6vw, 5.5rem);
+  --heading-hero: clamp(3.25rem, 8vw, 7.5rem);
+
+  /* ---------------------------------------------------------
+     SPACING
+     --------------------------------------------------------- */
+
+  --section-space-sm: 4rem;
+  --section-space-md: 6rem;
+  --section-space-lg: 8rem;
+
+  --page-padding: clamp(1rem, 4vw, 4rem);
+  --content-width: 1440px;
+  --text-width: 680px;
+
+  /* ---------------------------------------------------------
+     BORDER RADIUS
+     --------------------------------------------------------- */
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.875rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 1.75rem;
+  --radius-full: 9999px;
+
+  /* ---------------------------------------------------------
+     SHADOWS
+     --------------------------------------------------------- */
+
+  --shadow-sm:
+    0 1px 3px rgba(24, 33, 43, 0.05);
+
+  --shadow-md:
+    0 8px 30px rgba(24, 33, 43, 0.07);
+
+  --shadow-lg:
+    0 20px 60px rgba(24, 33, 43, 0.1);
+
+  /* ---------------------------------------------------------
+     ANIMATION
+     --------------------------------------------------------- */
+
+  --transition-fast: 150ms ease;
+  --transition-normal: 300ms ease;
+  --transition-slow: 600ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+/* =========================================================
+   BASE
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
+  margin: 0;
+
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: 400;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--accent-yellow);
+  color: var(--text-primary);
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--text-primary);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--heading-lg);
+  line-height: 0.98;
+  font-weight: 600;
+  letter-spacing: -0.045em;
+}
+
+h2 {
+  font-size: var(--heading-md);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+h3 {
+  font-size: var(--heading-sm);
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+
+/* =========================================================
+   EDITORIAL / FASHION TYPOGRAPHY
+   ========================================================= */
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.hero-title {
+  max-width: 900px;
+
+  font-size: var(--heading-hero);
+  font-weight: 500;
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+
+  text-wrap: balance;
+}
+
+.section-title {
+  font-size: var(--heading-md);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.section-description {
+  max-width: var(--text-width);
+
+  color: var(--text-secondary);
+
+  font-size: clamp(1rem, 1.4vw, 1.125rem);
+  line-height: 1.7;
+}
+
+.eyebrow {
+  color: var(--text-secondary);
+
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+
+/* =========================================================
+   LAYOUT
+   ========================================================= */
+
+.site-container {
+  width: min(
+    calc(100% - (var(--page-padding) * 2)),
+    var(--content-width)
+  );
+
+  margin-inline: auto;
+}
+
+.section {
+  padding-block: var(--section-space-md);
+}
+
+.section-soft {
+  background: var(--surface-soft);
+}
+
+.section-warm {
+  background: var(--surface-warm);
+}
+
+
+/* =========================================================
+   LINKS
+   ========================================================= */
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.text-link {
+  position: relative;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+
+  font-weight: 500;
+}
+
+.text-link::after {
+  content: "";
+
+  position: absolute;
+  right: 0;
+  bottom: -0.2rem;
+  left: 0;
+
+  height: 1px;
+
+  background: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform var(--transition-normal);
+}
+
+.text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  min-height: 48px;
+
+  padding: 0.75rem 1.6rem;
+
+  border: 1px solid var(--primary);
+  border-radius: var(--radius-full);
+
+  background: var(--primary);
+  color: var(--primary-foreground);
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.btn-primary:hover {
+  background: var(--primary-hover);
+  border-color: var(--primary-hover);
+
+  transform: translateY(-1px);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+
+  min-height: 48px;
+
+  padding: 0.75rem 1.6rem;
+
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+
+  background: rgba(255, 255, 255, 0.9);
+  color: var(--text-primary);
+
+  font-size: 0.875rem;
+  font-weight: 600;
+
+  transition:
+    background var(--transition-normal),
+    border-color var(--transition-normal),
+    transform var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background: var(--surface-soft);
+  border-color: var(--text-primary);
+
+  transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   PRODUCT CARDS
+   ========================================================= */
+
+.product-card {
+  position: relative;
+
+  background: transparent;
+
+  border-radius: var(--radius-lg);
+}
+
+.product-image {
+  position: relative;
+
+  overflow: hidden;
+
+  aspect-ratio: 4 / 5;
+
+  border-radius: var(--radius-lg);
+
+  background: var(--surface-soft);
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform var(--transition-slow);
+}
+
+@media (hover: hover) {
+  .product-card:hover .product-image img {
+    transform: scale(1.035);
+  }
+}
+
+.product-name {
+  margin-top: 0.9rem;
+  margin-bottom: 0.2rem;
+
+  color: var(--text-primary);
+
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.product-price {
+  color: var(--text-secondary);
+
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+
+/* =========================================================
+   BADGES
+   ========================================================= */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 0.4rem 0.7rem;
+
+  border-radius: var(--radius-full);
+
+  background: var(--surface);
+  color: var(--text-primary);
+
+  font-size: 0.6875rem;
+  font-weight: 600;
+
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-sale {
+  background: var(--sale);
+  color: white;
+}
+
+
+/* =========================================================
+   FOCUS / ACCESSIBILITY
+   ========================================================= */
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) {
+  :root {
+    --section-space-sm: 3rem;
+    --section-space-md: 4.5rem;
+    --section-space-lg: 6rem;
+  }
+
+  body {
+    font-size: 0.9375rem;
+  }
+
+  .hero-title {
+    line-height: 0.95;
+  }
+
+  .section-description {
+    line-height: 1.65;
+  }
+}
+
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* =========================================================
+   UTILITIES
+   ========================================================= */
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
 }
