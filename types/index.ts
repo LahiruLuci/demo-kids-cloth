@@ -1,5 +1,6 @@
 export interface Product {
   id: string;
+  slug?: string;
   name: string;
   price: number;
   image: string;
@@ -8,6 +9,12 @@ export interface Product {
   primaryImage: string;
   hoverImage: string;
   href?: string;
+  colors?: { name: string; value: string }[];
+  sizes?: { label: string; available: boolean }[];
+  shortDescription?: string;
+  details?: string[];
+  materialCare?: string[];
+  deliveryReturns?: string[];
 }
 
 export interface HeroSlide {
